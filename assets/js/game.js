@@ -6,24 +6,37 @@
 //this creates a function named "fight"
 
 
+var fightOrSkip = function(){
+    var promptFight = window.prompt("Would you like to Fight or SKIP this battle?");
+
+    if (promptFight === "" || promptFight === null) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+    
+    promptFight = promptFight.toLowerCase();
+
+    if (promptFight === "skip" || promptFight === "SKIP") {
+        //confirm player skip
+        var confirmSkip = window.confirm("Are you sure you want to quit?");
+
+        //if yes leave fight
+        if (confirmSkip) {
+            window.alert(playerInfo.name + " has chosen to skip the fight!");
+            //subtract money from playerInfo.money
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
+            console.log("playerInfo.money", playerInfo.money);
+            
+            return true;
+        };
+    };
+}
+
 var fight = function (enemy) {
     while (playerInfo.health > 0 && enemy.health > 0) {
-        // Alert players that they are starting the round
-        var promptFight = window.prompt("Would you like to Fight or SKIP this battle?");
-
-        if (promptFight === "skip" || promptFight === "SKIP") {
-            //confirm player skip
-            var confirmSkip = window.confirm("Are you sure you want to quit?");
-
-            //if yes leave fight
-            if (confirmSkip) {
-                window.alert(playerInfo.name + " has chosen to skip the fight!");
-                //subtract money from playerInfo.money
-                playerInfo.money = Math.max(0, playerInfo.money - 10);
-                console.log("playerInfo.money", playerInfo.money);
-                break;
-            };
-        };
+       if (fightOrSkip()) {
+           break;
+       }
 
         // subtract playerInfo.attack from enemy.health
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack)
@@ -151,7 +164,7 @@ var getPlayerName = function(){
         name = prompt("what is your robot's name?");
     }
 
-    console.log("Your robot's name is" + name);
+    console.log("Your robot's name is " + name);
     return name;
 }
 
