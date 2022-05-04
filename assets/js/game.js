@@ -6,7 +6,6 @@
 //this creates a function named "fight"
 
 
-<<<<<<< HEAD
 var fightOrSkip = function(){
     var promptFight = window.prompt("Would you like to Fight or SKIP this battle?");
 
@@ -32,41 +31,12 @@ var fightOrSkip = function(){
         };
     };
 }
-=======
-var fightOrSkip = function() {
-    // ask player if they'd like to fight or skip using fightOrSkip function
-    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
-  
-    if (promptFight === "" || promptFight === null) {
-        window.alert("You need to provide a valid answer! Please try again.");
-        return fightOrSkip();
-      }
-      promptFight = promptFight.toLowerCase();
-
-    if (promptFight === "skip") {
-      // confirm player wants to skip
-      var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-  
-      // if yes (true), leave fight
-      if (confirmSkip) {
-        window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-        // subtract money from playerMoney for skipping
-        playerInfo.playerMoney = playerInfo.money - 10;
-        return true;
-      }
-    }
-  }
->>>>>>> fighskipbug
 
 var fight = function (enemy) {
     while (playerInfo.health > 0 && enemy.health > 0) {
        if (fightOrSkip()) {
            break;
        }
-<<<<<<< HEAD
-=======
-
->>>>>>> fighskipbug
 
         // subtract playerInfo.attack from enemy.health
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack)
@@ -157,20 +127,19 @@ var endGame = function(){
 
 var shop = function() {
     var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
-
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE.");
+        shopOptionPrompt = parseInt(shopOptionPrompt);
     switch (shopOptionPrompt) {
-        case "REFILL":
-        case "refill":
+   
+        case 1:
          playerInfo.refillHealth();
             break;
 
-        case "UPGRADE":
-        case "upgrade":
+        case 2:
          playerInfo.upgradeAttack();
             break;
 
-        case "leave":
+        case 3:
             window.alert('Leaving the store.');
             break;
 
@@ -217,7 +186,7 @@ var playerInfo = {
         this.money -= 7;
         }
         else {
-            window.alert("You don't have enough money!");l
+            window.alert("You don't have enough money!");
         }
     },
 
